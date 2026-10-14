@@ -1,0 +1,21 @@
+import { Router } from 'express';
+import authRoutes from './authRoutes.js';
+import { orgRouter, orgsRouter } from './orgRoutes.js';
+import invitationRoutes from './invitationRoutes.js';
+import ticketRoutes from './ticketRoutes.js';
+import knowledgeRoutes from './knowledgeRoutes.js';
+import { aiRouter, analyticsRouter, notificationRouter, publicRouter } from './miscRoutes.js';
+
+const api = Router();
+api.get('/health', (_req, res) => res.json({ data: { status: 'ok' } }));
+api.use('/auth', authRoutes);
+api.use('/orgs', orgsRouter);
+api.use('/org', orgRouter);
+api.use('/invitations', invitationRoutes);
+api.use('/tickets', ticketRoutes);
+api.use('/knowledge', knowledgeRoutes);
+api.use('/analytics', analyticsRouter);
+api.use('/notifications', notificationRouter);
+api.use('/ai', aiRouter);
+api.use('/public', publicRouter);
+export default api;

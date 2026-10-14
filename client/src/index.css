@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-surface font-sans text-slate-800 antialiased; }
+  :focus-visible { outline: 2px solid theme('colors.brand.500'); outline-offset: 2px; }
+  ::selection { background: theme('colors.brand.200'); }
+}
+
+@layer components {
+  .skeleton { @apply relative overflow-hidden rounded-md bg-slate-200/80; }
+  .skeleton::after { content: ''; @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/60 to-transparent; animation: shimmer 1.4s infinite; }
+  .scroll-thin { scrollbar-width: thin; scrollbar-color: theme('colors.slate.300') transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
